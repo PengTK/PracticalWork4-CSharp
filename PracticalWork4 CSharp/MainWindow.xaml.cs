@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,9 @@ namespace PracticalWork4_CSharp
             InitializeComponent();
             notes = SaveLoad.Load();
             DatePicker.Text = DateTime.Now.ToString();
-            
+            Change_Price();
+            UpDate();
+
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -65,6 +68,7 @@ namespace PracticalWork4_CSharp
             notes.RemoveAt(idSelected);
             UpDate();
             SaveLoad.Save(notes);
+            Change_Price();
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
@@ -72,6 +76,7 @@ namespace PracticalWork4_CSharp
             notes.Add(new Note(NameBox.Text, comboBox.Text, Convert.ToDouble(SumBox.Text), Convert.ToDateTime(DatePicker.Text)));
             UpDate();
             SaveLoad.Save(notes);
+            Change_Price();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -84,17 +89,19 @@ namespace PracticalWork4_CSharp
 
         private void UpDate()
         {
+            /*Menu.ItemsSource = notes.Where(f => f.date == Convert.ToDateTime(DatePicker.Text));*/
             DateTime date = Convert.ToDateTime(DatePicker.Text);
-            List<string> noteNames = new List<string>();
+            List<Note> noteNames = new List<Note>();
             foreach (Note note in notes)
             {
                 if (note.date == date)
                 {
                     selectedNotes.Add(note);
-                    noteNames.Add(note.name);
+                    noteNames.Add(new Note(note.name, note.type, Convert.ToDouble(note.money), note.date));
                 }
             }
             Menu.ItemsSource = noteNames;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -117,6 +124,25 @@ namespace PracticalWork4_CSharp
             {
                 MessageBox.Show("Тема не была добавлена");
             }
+        }
+
+        private void Change_Price()
+        {
+            try
+            {
+                double price = 0;
+                foreach (var f in notes)
+                {
+                    price += f.money;
+                }
+                Price.Content = price.ToString();
+            }
+            catch { }
+        }
+
+        private void dataGridOutPut()
+        {
+            
         }
     }
 }

@@ -26,7 +26,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path = name}" Header="Название траты" Width="1*"/>
                 <DataGridTextColumn Binding="{Binding Path = type}" Header="Тип траты" Width="1*"/>
-                <DataGridTextColumn Binding="{Binding Path = money}" Header="Сумма" Width="1*"/>
+                <DataGridTextColumn Binding="{Binding Path = money}" Header="Стоимость" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Margin="0,148,130,0" TextWrapping="Wrap" Text="Название заметки" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="104"/>
@@ -34,6 +34,8 @@
         <TextBox x:Name="SumBox" Margin="0,65,10,0" TextWrapping="Wrap" Height="44" VerticalAlignment="Top" HorizontalAlignment="Right" Width="350" Grid.Row="2"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Right" Margin="0,173,10,0" VerticalAlignment="Top" Width="350" Height="33" Grid.RowSpan="2"/>
         <Button Content="Добавить новый тип заметки" HorizontalAlignment="Right" Margin="0,21,10,0" VerticalAlignment="Top" Height="24" Width="350" Grid.RowSpan="2" Click="Button_Click" Grid.Row="1"/>
+        <Label Content="Сумма" HorizontalAlignment="Left" Margin="201,160,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Label x:Name="Price" Content="" HorizontalAlignment="Left" Margin="210,179,0,0" Grid.Row="2" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -5,9 +5,9 @@ namespace PracticalWork4_CSharp
 {
     internal class Note
     {
-        public string name;
-        public string type;
-        public double money;
+        public string name { get; }
+        public string type { get; }
+        public double money { get; }
         public DateTime date;
 
         public static ObservableCollection<Note> notes;
